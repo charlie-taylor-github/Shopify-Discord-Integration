@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "shopcord"
+client_id = "ac54d83c2e8e9222204b5e3b132cf0d4"
+application_url = "https://effectively-principle-confirmation-adequate.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,write_products,read_orders"
+
+[auth]
+redirect_urls = [
+  "https://effectively-principle-confirmation-adequate.trycloudflare.com/auth/callback",
+  "https://effectively-principle-confirmation-adequate.trycloudflare.com/auth/shopify/callback",
+  "https://effectively-principle-confirmation-adequate.trycloudflare.com/api/auth/callback",
+  "https://effectively-principle-confirmation-adequate.trycloudflare.com/.shopify/graphiql/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "development-store-12345.myshopify.com"

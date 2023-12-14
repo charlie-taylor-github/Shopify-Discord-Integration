@@ -1,0 +1,44 @@
+||-----------| NEXT |-----------||
+ - generalise the code to work with any update
+ - add a couple more potentially useful updates
+ - shopify discord setup process
+ - permanent db
+ - secure post requests from shopify
+
+
+||-----------| SHOPIFY APP |-----------||
+- clean up webhook subscriptions on uninstallation
+- create an interface for users to toggle which updates they want. after the setup process, it displays a list of all "update type" and they each have a toggle. when they toggle it, it deletes the webhook subscription and chats to the server to update the db to represent this (so repeat webhook calls dont trigger)
+- use customer name/s
+
+
+
+  console.log("--------------------------------------------")
+  console.log("sending request");
+  const graphql = admin.graphql;
+  const response = await graphql(`
+  mutation {
+    webhookSubscriptionCreate(
+      topic: ORDERS_CREATE,
+      webhookSubscription: {
+        format: JSON,
+        callbackUrl: "https://a210-144-32-240-121.ngrok-free.app/webhook/orders/create"
+      }
+    ) {
+      webhookSubscription {
+        id
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+  `);
+  const responseJson = await response.json();
+  const data = responseJson.data;
+  console.log("ATTEMPTED WEBHOOK SUBSCRIPTION")
+  console.log(data.webhookSubscriptionCreate);
+
+
+https://admin.shopify.com/store/<store-id>/orders/<order-id>
